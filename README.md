@@ -24,9 +24,13 @@ MarketingFlow is a Flutter application that extracts the complete knowledge base
 
 ## Screenshots
 
-| Home | Detail | Settings |
-|------|--------|----------|
-| Browse 114 strategies with category & type filters | Execute strategies with dynamic input forms | Language toggle (EN/KR) & API configuration |
+<p align="center">
+  <img src="assets/screenshots/home.png" width="250" alt="Home Screen">
+</p>
+
+| Home | Category Filter | About & License | Revenue Intel |
+|------|----------------|-----------------|---------------|
+| Browse 114 strategies | Filter by category with color-coded icons | MIT license & attribution | Category-specific filtering |
 
 ## Features
 
