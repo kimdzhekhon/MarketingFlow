@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/app_logo.png" width="120" alt="MarketingFlow Logo">
+  <img src="assets/app_icon.png" width="120" alt="MarketingFlow Logo">
 </p>
 
 <h1 align="center">MarketingFlow</h1>
@@ -25,12 +25,16 @@ MarketingFlow is a Flutter application that extracts the complete knowledge base
 ## Screenshots
 
 <p align="center">
-  <img src="assets/screenshots/home.png" width="250" alt="Home Screen">
+  <img src="assets/screenshots/en1.png" width="180">&nbsp;
+  <img src="assets/screenshots/en2.png" width="180">&nbsp;
+  <img src="assets/screenshots/en3.png" width="180">&nbsp;
+  <img src="assets/screenshots/en4.png" width="180">&nbsp;
+  <img src="assets/screenshots/en5.png" width="180">
 </p>
 
-| Home | Category Filter | About & License | Revenue Intel |
-|------|----------------|-----------------|---------------|
-| Browse 114 strategies | Filter by category with color-coded icons | MIT license & attribution | Category-specific filtering |
+| Home | SEO Filter | Revenue Intel | About & License | Settings |
+|------|-----------|---------------|-----------------|----------|
+| Browse 114 strategies | Filter by category | Revenue Intelligence | MIT license & attribution | Language & API config |
 
 ## Features
 

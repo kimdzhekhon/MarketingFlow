@@ -90,19 +90,13 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 28,
-              height: 28,
-              decoration: BoxDecoration(
-                color: theme.colorScheme.primary,
-                borderRadius: BorderRadius.circular(7),
-              ),
-              child: const Center(
-                child: Text('M', style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
-                  fontSize: 16,
-                )),
+            ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.asset(
+                'assets/app_icon.png',
+                width: 32,
+                height: 32,
+                fit: BoxFit.cover,
               ),
             ),
             const SizedBox(width: 10),

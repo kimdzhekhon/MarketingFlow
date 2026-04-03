@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/app_logo.png" width="120" alt="MarketingFlow 로고">
+  <img src="assets/app_icon.png" width="120" alt="MarketingFlow 로고">
 </p>
 
 <h1 align="center">MarketingFlow</h1>
@@ -25,12 +25,16 @@ MarketingFlow는 [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-
 ## 스크린샷
 
 <p align="center">
-  <img src="assets/screenshots/home.png" width="250" alt="홈 화면">
+  <img src="assets/screenshots/kr1.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr2.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr3.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr4.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr5.png" width="180">
 </p>
 
-| 홈 화면 | 카테고리 필터 | 정보 및 라이선스 | 매출 인텔리전스 |
-|---------|-------------|----------------|---------------|
-| 114개 전략 탐색 | 색상 코드 카테고리 필터 | MIT 라이선스 및 저작자 고지 | 카테고리별 필터링 |
+| 홈 화면 | SEO 필터 | 매출 인텔리전스 | 정보 및 라이선스 | 설정 |
+|---------|---------|--------------|--------------|------|
+| 114개 전략 탐색 | 카테고리별 필터링 | Revenue Intelligence | MIT 라이선스 및 저작자 고지 | 언어 및 API 설정 |
 
 ## 주요 기능
 
