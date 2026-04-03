@@ -175,5 +175,4 @@ MIT License — Copyright (c) 2026 Single Grain
 ---
 
 <p align="center">
-  Flutter + Claude API로 제작
 </p>
