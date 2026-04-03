@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_markdown/flutter_markdown.dart';
+import '../l10n/app_locale.dart';
 
 class MarkdownViewer extends StatelessWidget {
   final String data;
   final String? title;
+  final AppLocale locale;
 
   const MarkdownViewer({
     super.key,
     required this.data,
     this.title,
+    required this.locale,
   });
 
   @override
@@ -24,24 +27,24 @@ class MarkdownViewer extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 12),
             child: Row(
               children: [
-                Icon(Icons.smart_toy, color: theme.colorScheme.primary),
+                Icon(Icons.description_rounded,
+                    color: theme.colorScheme.primary, size: 20),
                 const SizedBox(width: 8),
-                Text(
-                  title!,
-                  style: theme.textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                Text(title!,
+                    style: theme.textTheme.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w700)),
                 const Spacer(),
                 IconButton(
-                  icon: const Icon(Icons.copy, size: 20),
-                  tooltip: '복사',
+                  icon: Icon(Icons.copy_rounded,
+                      size: 18, color: theme.colorScheme.outline),
+                  tooltip: locale.copy,
                   onPressed: () {
                     Clipboard.setData(ClipboardData(text: data));
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('클립보드에 복사되었습니다'),
-                        duration: Duration(seconds: 2),
+                      SnackBar(
+                        content: Text(locale.copied),
+                        duration: const Duration(seconds: 2),
+                        behavior: SnackBarBehavior.floating,
                       ),
                     );
                   },
@@ -51,12 +54,9 @@ class MarkdownViewer extends StatelessWidget {
           ),
         Container(
           decoration: BoxDecoration(
-            color: theme.colorScheme.surfaceContainerHighest
-                .withValues(alpha: 0.3),
+            color: theme.cardTheme.color,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: theme.colorScheme.outlineVariant,
-            ),
+            border: Border.all(color: theme.dividerColor),
           ),
           padding: const EdgeInsets.all(16),
           child: MarkdownBody(
@@ -64,15 +64,9 @@ class MarkdownViewer extends StatelessWidget {
             selectable: true,
             styleSheet: MarkdownStyleSheet.fromTheme(theme).copyWith(
               p: theme.textTheme.bodyMedium,
-              h1: theme.textTheme.headlineSmall?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-              h2: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-              h3: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+              h1: theme.textTheme.headlineSmall,
+              h2: theme.textTheme.titleLarge,
+              h3: theme.textTheme.titleMedium,
               code: theme.textTheme.bodySmall?.copyWith(
                 fontFamily: 'monospace',
                 backgroundColor: theme.colorScheme.surfaceContainerHighest,
