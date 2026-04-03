@@ -1,7 +1,7 @@
 name: marketing_flow
 description: "MarketingFlow - AI 기반 마케팅 자동화 플랫폼"
 publish_to: 'none'
-version: 1.0.0+1
+version: 2.0.0+2
 
 environment:
   sdk: ^3.11.1
@@ -22,3 +22,6 @@ flutter:
   uses-material-design: true
   assets:
     - assets/marketing_knowledge_base.json
+    - assets/app_logo.png
+    - assets/app_logo_48.png
+    - assets/app_logo_96.png
