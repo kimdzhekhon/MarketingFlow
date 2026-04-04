@@ -71,8 +71,6 @@ class AppLocale {
         case '세일즈 플레이북': return 'Sales Playbook';
         case 'SEO 운영': return 'SEO';
         case '팀 운영': return 'Team Ops';
-        case '보안': return 'Security';
-        case '텔레메트리': return 'Telemetry';
         default: return cat;
       }
     }

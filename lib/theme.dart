@@ -196,8 +196,6 @@ class AppTheme {
     '세일즈 플레이북': Color(0xFFD4503E), // Red-coral
     'SEO 운영': Color(0xFF8B6EC0),      // Lavender
     '팀 운영': Color(0xFF6B8E8E),       // Slate teal
-    '보안': Color(0xFF9B8579),          // Warm taupe
-    '텔레메트리': Color(0xFF7E8C9E),    // Cool grey
   };
 
   static Color categoryColor(String category) =>
