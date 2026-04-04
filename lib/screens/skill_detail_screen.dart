@@ -24,6 +24,22 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
 
   AppLocale get l => widget.appState.locale;
 
+  @override
+  void initState() {
+    super.initState();
+    widget.appState.addListener(_onStateChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_onStateChanged);
+    super.dispose();
+  }
+
+  void _onStateChanged() {
+    if (mounted) setState(() {});
+  }
+
   Future<void> _execute(Map<String, String> inputs) async {
     final apiKey = widget.appState.apiKey;
     if (apiKey == null || apiKey.isEmpty) {
