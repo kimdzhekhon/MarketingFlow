@@ -27,9 +27,116 @@ CATEGORY_MAP = {
     'sales-playbook': '세일즈 플레이북',
     'seo-ops': 'SEO 운영',
     'team-ops': '팀 운영',
-    'security': '보안',
-    'telemetry': '텔레메트리',
 }
+
+# ── 영어→한글 제목 번역 맵 ──
+TITLE_KO_MAP = {
+    'content ops': '콘텐츠 운영',
+    'ai content ops': '콘텐츠 운영',
+    'conversion ops': '전환 최적화',
+    'finance ops': '재무 운영',
+    'growth engine': '성장 엔진',
+    'outbound engine': '아웃바운드 엔진',
+    'podcast ops': '팟캐스트 운영',
+    'revenue intelligence': '매출 인텔리전스',
+    'sales pipeline': '세일즈 파이프라인',
+    'sales playbook': '세일즈 플레이북',
+    'seo ops': 'SEO 운영',
+    'ai seo ops': 'SEO 운영',
+    'team ops': '팀 운영',
+    'expert assembly guide': '전문가 패널 구성 가이드',
+    'linkedin': 'LinkedIn 콘텐츠 전문가',
+    'instagram': 'Instagram 콘텐츠 전문가',
+    'newsletter': '뉴스레터 전문가',
+    'humanizer': '휴머나이저',
+    'podcast quotes': '팟캐스트 인용구 전문가',
+    'recruiting': '채용 콘텐츠 전문가',
+    'seo strategy': 'SEO 전략가',
+    'x articles': 'X(트위터) 아티클 전문가',
+    'youtube shorts': 'YouTube Shorts 전문가',
+    'content quality': '콘텐츠 품질 평가',
+    'conversion quality': '전환 품질 평가',
+    'evaluation quality': '평가 품질',
+    'strategic quality': '전략적 품질',
+    'visual quality': '비주얼 품질',
+    'patterns': '패턴 라이브러리',
+    'skill': '스킬 정의',
+    'cro audit': 'CRO 감사',
+    'survey lead magnet': '설문 리드 마그넷',
+    'cfo analyzer': 'CFO 분석기',
+    'scenario modeler': '시나리오 모델러',
+    'experiment engine': '실험 엔진',
+    'autogrowth weekly scorecard': '주간 성장 스코어카드',
+    'pacing alert': '페이싱 알림',
+    'cold outbound sender': '콜드 아웃바운드 발송',
+    'competitive monitor': '경쟁사 모니터링',
+    'cross signal detector': '크로스 시그널 감지기',
+    'instantly audit': 'Instantly 감사',
+    'lead pipeline': '리드 파이프라인',
+    'podcast pipeline': '팟캐스트 파이프라인',
+    'client report generator': '클라이언트 리포트 생성기',
+    'gong insight pipeline': 'Gong 인사이트 파이프라인',
+    'revenue attribution': '매출 어트리뷰션',
+    'deal resurrector': '딜 부활기',
+    'icp learning analyzer': 'ICP 학습 분석기',
+    'trigger prospector': '트리거 프로스펙터',
+    'call analyzer': '콜 분석기',
+    'value pricing briefing': '밸류 프라이싱 브리핑',
+    'value pricing packager': '밸류 프라이싱 패키저',
+    'pricing pattern library': '가격 패턴 라이브러리',
+    'content attack brief': '콘텐츠 공격 브리프',
+    'gsc auth': 'Google Search Console 인증',
+    'gsc client': 'Google Search Console 클라이언트',
+    'trend scout': '트렌드 스카우트',
+    'meeting action extractor': '미팅 액션 추출기',
+    'team performance audit': '팀 성과 감사',
+    'copy rules': '카피 규칙',
+    'expert panel': '전문가 패널',
+    'icp template': 'ICP 템플릿',
+    'instantly rules': 'Instantly 규칙',
+    'claude roi': 'Claude ROI 분석',
+    'metrics guide': '지표 가이드',
+    'org overhead': '조직 오버헤드',
+    'output template': '출력 템플릿',
+    'quickbooks formats': 'QuickBooks 형식',
+    'rates': '요율표',
+    'team cost': '팀 비용',
+    'content quality gate': '콘텐츠 품질 게이트',
+    'content quality scorer': '콘텐츠 품질 스코어러',
+    'content transform': '콘텐츠 변환',
+    'editorial brain': '편집 브레인',
+    'quote mining engine': '인용구 마이닝 엔진',
+    'rb2b instantly router': 'RB2B 라우터',
+    'rb2b suppression pipeline': 'RB2B 억제 파이프라인',
+    'rb2b webhook ingest': 'RB2B 웹훅 수집',
+    'ai revenue intelligence': '매출 인텔리전스',
+}
+
+def get_title_ko(title, file_name='', category='', file_type=''):
+    """영어 제목을 한글로 변환"""
+    key = title.lower().strip()
+    if key in TITLE_KO_MAP:
+        return TITLE_KO_MAP[key]
+    # 파일명 기반 변환 시도
+    normalized = key.replace('-', ' ').replace('_', ' ')
+    if normalized in TITLE_KO_MAP:
+        return TITLE_KO_MAP[normalized]
+    # 파일명 자체로 시도
+    fn = file_name.lower().replace('.md','').replace('.py','').replace('.json','').replace('.txt','').replace('.example','').replace('.env','').replace('-',' ').replace('_',' ').strip()
+    if fn in TITLE_KO_MAP:
+        return TITLE_KO_MAP[fn]
+    # 설정/의존성/환경 파일은 카테고리 + 파일타입으로
+    if file_type in ('config_template', 'config', 'requirements'):
+        type_labels = {
+            'config_template': '환경 설정',
+            'config': '설정 파일',
+            'requirements': '의존성 목록',
+        }
+        return '%s %s' % (category, type_labels.get(file_type, ''))
+    # 문서(README)는 카테고리 + 가이드
+    if file_type == 'documentation':
+        return '%s 가이드' % category
+    return ''
 
 # ── 파일 타입별 분류 ──
 FILE_TYPE_MAP = {
@@ -177,11 +284,14 @@ def parse_file(filepath, rel_path):
     if not description:
         description = '%s - %s' % (category, title)
 
+    title_ko = get_title_ko(title, name, category, file_type)
+
     return {
         'id': generate_id(category_key, title, rel_path),
         'category': category,
         'type': file_type,
         'title': title,
+        'title_ko': title_ko,
         'description': description,
         'system_prompt': content,
         'variables': variables if variables else ['주제', '목표', '대상 고객'],
@@ -203,7 +313,7 @@ def scan_all(source_dir):
         'content-ops', 'conversion-ops', 'finance-ops',
         'growth-engine', 'outbound-engine', 'podcast-ops',
         'revenue-intelligence', 'sales-pipeline', 'sales-playbook',
-        'seo-ops', 'team-ops', 'security', 'telemetry',
+        'seo-ops', 'team-ops',
     ]
 
     for skill_dir in skill_dirs:

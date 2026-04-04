@@ -36,8 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
     '세일즈 플레이북': Icons.menu_book,
     'SEO 운영': Icons.travel_explore,
     '팀 운영': Icons.groups,
-    '보안': Icons.shield,
-    '텔레메트리': Icons.bar_chart,
   };
 
   @override
@@ -277,7 +275,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(skill.title,
+                    Text(_displayTitle(skill),
                         style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
                         maxLines: 1, overflow: TextOverflow.ellipsis),
                     const SizedBox(height: 3),
@@ -302,6 +300,11 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  String _displayTitle(MarketingSkill skill) {
+    if (l.isKo && skill.titleKo.isNotEmpty) return skill.titleKo;
+    return skill.title;
   }
 
   Widget _typeBadge(String label, Color color) {

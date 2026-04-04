@@ -50,7 +50,10 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(skill.title, style: const TextStyle(fontSize: 16)),
+        title: Text(
+          l.isKo && skill.titleKo.isNotEmpty ? skill.titleKo : skill.title,
+          style: const TextStyle(fontSize: 16),
+        ),
         actions: [
           IconButton(
             icon: const Icon(Icons.tune_rounded, size: 22),

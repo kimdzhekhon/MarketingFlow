@@ -6,6 +6,7 @@ class MarketingSkill {
   final String category;
   final String type;
   final String title;
+  final String titleKo;
   final String description;
   final String systemPrompt;
   final List<String> variables;
@@ -17,6 +18,7 @@ class MarketingSkill {
     required this.category,
     required this.type,
     required this.title,
+    required this.titleKo,
     required this.description,
     required this.systemPrompt,
     required this.variables,
@@ -30,6 +32,7 @@ class MarketingSkill {
       category: json['category'] as String,
       type: json['type'] as String? ?? 'skill_definition',
       title: json['title'] as String,
+      titleKo: json['title_ko'] as String? ?? '',
       description: json['description'] as String,
       systemPrompt: json['system_prompt'] as String,
       variables: List<String>.from(json['variables'] as List),
@@ -147,6 +150,7 @@ class KnowledgeBase {
     return skills
         .where((s) =>
             s.title.toLowerCase().contains(q) ||
+            s.titleKo.toLowerCase().contains(q) ||
             s.description.toLowerCase().contains(q) ||
             s.category.toLowerCase().contains(q) ||
             s.type.toLowerCase().contains(q) ||
