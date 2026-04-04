@@ -18,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   KnowledgeBase? _kb;
   String? _selectedCategory;
-  String? _selectedType;
   String _searchQuery = '';
   bool _isLoading = true;
 
@@ -62,9 +61,6 @@ class _HomeScreenState extends State<HomeScreen> {
     if (_selectedCategory != null) {
       skills = skills.where((s) => s.category == _selectedCategory).toList();
     }
-    if (_selectedType != null) {
-      skills = skills.where((s) => s.type == _selectedType).toList();
-    }
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
       skills = skills.where((s) =>
@@ -80,7 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final categories = _kb?.categories ?? [];
-    final types = _kb?.types ?? [];
     final total = _kb?.totalItems ?? 0;
 
     return Scaffold(
@@ -137,27 +132,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
 
-                // Type filters
-                SizedBox(
-                  height: 38,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    children: [
-                      _buildChip(l.allTypes, _selectedType == null, () =>
-                          setState(() => _selectedType = null)),
-                      ...types.map((t) => _buildChip(
-                        l.typeLabel(t),
-                        _selectedType == t,
-                        () => setState(() => _selectedType = _selectedType == t ? null : t),
-                        color: AppTheme.typeColor(t),
-                      )),
-                    ],
-                  ),
-                ),
-
-                const SizedBox(height: 6),
-
                 // Category filters
                 SizedBox(
                   height: 38,
@@ -185,12 +159,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(l.resultCount(_filtered.length),
                           style: theme.textTheme.bodySmall),
-                      if (_selectedCategory != null || _selectedType != null) ...[
+                      if (_selectedCategory != null) ...[
                         const Spacer(),
                         GestureDetector(
                           onTap: () => setState(() {
                             _selectedCategory = null;
-                            _selectedType = null;
                           }),
                           child: Text(l.resetFilters,
                               style: TextStyle(fontSize: 12, color: theme.colorScheme.primary)),
@@ -242,7 +215,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildSkillCard(MarketingSkill skill, ThemeData theme) {
     final catColor = AppTheme.categoryColor(skill.category);
-    final tColor = AppTheme.typeColor(skill.type);
 
     return Card(
       margin: const EdgeInsets.only(bottom: 8),
@@ -283,13 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         maxLines: 1, overflow: TextOverflow.ellipsis,
                         style: theme.textTheme.bodySmall),
                     const SizedBox(height: 6),
-                    Row(
-                      children: [
-                        _typeBadge(l.typeLabel(skill.type), tColor),
-                        const SizedBox(width: 6),
-                        _typeBadge(l.categoryLabel(skill.category), catColor),
-                      ],
-                    ),
+                    _typeBadge(l.categoryLabel(skill.category), catColor),
                   ],
                 ),
               ),

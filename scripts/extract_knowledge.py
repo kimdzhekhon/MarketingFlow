@@ -327,8 +327,11 @@ def scan_all(source_dir):
             dirs[:] = [d for d in dirs if not d.startswith('.') and d != '__pycache__']
 
             for filename in sorted(files):
-                # 대상 확장자
-                if not any(filename.endswith(ext) for ext in ['.md', '.py', '.json', '.env.example', '.txt']):
+                # 마케팅 콘텐츠만 추출 (.md, .py)
+                if not any(filename.endswith(ext) for ext in ['.md', '.py']):
+                    continue
+                # README, .env, requirements, json 등 개발용 파일 제외
+                if filename.lower() in ('readme.md',):
                     continue
 
                 filepath = os.path.join(root, filename)
