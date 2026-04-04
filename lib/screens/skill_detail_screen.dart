@@ -24,13 +24,40 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
 
   AppLocale get l => widget.appState.locale;
 
+  @override
+  void initState() {
+    super.initState();
+    widget.appState.addListener(_onStateChanged);
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_onStateChanged);
+    super.dispose();
+  }
+
+  void _onStateChanged() {
+    if (mounted) setState(() {});
+  }
+
   Future<void> _execute(Map<String, String> inputs) async {
-    var apiKey = widget.appState.apiKey;
+    final apiKey = widget.appState.apiKey;
     if (apiKey == null || apiKey.isEmpty) {
-      final key = await Navigator.push<String>(context,
-          MaterialPageRoute(builder: (_) => SettingsScreen(appState: widget.appState)));
-      if (key == null || key.isEmpty) return;
-      apiKey = key;
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(l.isKo
+                ? 'API 키를 설정해주세요'
+                : 'Please set your API key in Settings'),
+            action: SnackBarAction(
+              label: l.settings,
+              onPressed: () => Navigator.push(context,
+                  MaterialPageRoute(builder: (_) => SettingsScreen(appState: widget.appState))),
+            ),
+          ),
+        );
+      }
+      return;
     }
 
     setState(() { _isLoading = true; _response = null; });
@@ -46,7 +73,6 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
     final theme = Theme.of(context);
     final skill = widget.skill;
     final catColor = AppTheme.categoryColor(skill.category);
-    final tColor = AppTheme.typeColor(skill.type);
 
     return Scaffold(
       appBar: AppBar(
@@ -54,13 +80,6 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
           l.isKo && skill.titleKo.isNotEmpty ? skill.titleKo : skill.title,
           style: const TextStyle(fontSize: 16),
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.tune_rounded, size: 22),
-            onPressed: () => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => SettingsScreen(appState: widget.appState))),
-          ),
-        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -84,16 +103,6 @@ class _SkillDetailScreenState extends State<SkillDetailScreen> {
                           ),
                           child: Text(l.categoryLabel(skill.category),
                               style: TextStyle(fontSize: 12, color: catColor, fontWeight: FontWeight.w600)),
-                        ),
-                        const SizedBox(width: 8),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-                          decoration: BoxDecoration(
-                            color: tColor.withValues(alpha: 0.1),
-                            borderRadius: BorderRadius.circular(6),
-                          ),
-                          child: Text(l.typeLabel(skill.type),
-                              style: TextStyle(fontSize: 12, color: tColor, fontWeight: FontWeight.w500)),
                         ),
                         const Spacer(),
                         Text(l.variableCount(skill.variables.length),
