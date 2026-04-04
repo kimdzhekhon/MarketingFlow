@@ -10,6 +10,15 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/iOS-000000?style=flat&logo=apple&logoColor=white" alt="iOS">
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white" alt="Android">
+  <img src="https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white" alt="macOS">
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white" alt="Windows">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux">
+  <img src="https://img.shields.io/badge/Web-4285F4?style=flat&logo=googlechrome&logoColor=white" alt="Web">
+</p>
+
+<p align="center">
   <a href="README.md">English</a> ·
   <a href="README_KO.md">한국어</a>
 </p>
@@ -18,9 +27,9 @@
 
 ## 개요
 
-MarketingFlow는 [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-skills) 오픈소스 프로젝트의 전체 지식 베이스를 추출하여 인터랙티브 전략 실행 도구로 변환하는 Flutter 앱입니다.
+MarketingFlow는 **iOS, Android, macOS, Windows, Linux, Web** 모든 플랫폼에서 실행되는 크로스 플랫폼 Flutter 앱입니다. [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-skills) 오픈소스 프로젝트의 전체 지식 베이스를 추출하여 인터랙티브 전략 실행 도구로 변환합니다.
 
-콘텐츠 운영부터 세일즈 플레이북까지 **13개 카테고리**의 **114개 마케팅 자산**이 모바일 퍼스트 인터페이스에 패키지되어 있으며, 사용자는 전략을 탐색, 검색, 실행할 수 있습니다.
+콘텐츠 운영부터 세일즈 플레이북까지 **11개 카테고리**의 **75개 마케팅 전략**이 하나의 코드베이스로 모든 플랫폼에서 작동하며, 사용자는 전략을 탐색, 검색, 실행할 수 있습니다.
 
 ## 스크린샷
 

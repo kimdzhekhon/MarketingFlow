@@ -10,6 +10,15 @@
 </p>
 
 <p align="center">
+  <img src="https://img.shields.io/badge/iOS-000000?style=flat&logo=apple&logoColor=white" alt="iOS">
+  <img src="https://img.shields.io/badge/Android-3DDC84?style=flat&logo=android&logoColor=white" alt="Android">
+  <img src="https://img.shields.io/badge/macOS-000000?style=flat&logo=apple&logoColor=white" alt="macOS">
+  <img src="https://img.shields.io/badge/Windows-0078D6?style=flat&logo=windows&logoColor=white" alt="Windows">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat&logo=linux&logoColor=black" alt="Linux">
+  <img src="https://img.shields.io/badge/Web-4285F4?style=flat&logo=googlechrome&logoColor=white" alt="Web">
+</p>
+
+<p align="center">
   <a href="README.md">English</a> ·
   <a href="README_KO.md">한국어</a>
 </p>
@@ -18,9 +27,9 @@
 
 ## Overview
 
-MarketingFlow is a Flutter application that extracts the complete knowledge base from the [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-skills) open-source project and transforms it into an interactive strategy execution tool.
+MarketingFlow is a cross-platform Flutter application that runs on **iOS, Android, macOS, Windows, Linux, and Web**. It extracts the complete knowledge base from the [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-skills) open-source project and transforms it into an interactive strategy execution tool.
 
-**114 marketing assets** across **13 categories** — from content operations to sales playbooks — are packaged into a mobile-first interface where users can browse, search, and execute strategies powered by LLM.
+**75 marketing strategies** across **11 categories** — from content operations to sales playbooks — are packaged into a single codebase that works on every platform where users can browse, search, and execute strategies powered by LLM.
 
 ## Screenshots
 
