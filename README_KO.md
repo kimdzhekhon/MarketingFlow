@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/app_icon.png" width="120" alt="MarketingFlow 로고">
+  <img src="assets/app_icon.png" width="120" style="border-radius:22px;" alt="MarketingFlow 로고">
 </p>
 
 <h1 align="center">MarketingFlow</h1>

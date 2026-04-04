@@ -110,6 +110,17 @@ TITLE_KO_MAP = {
     'rb2b suppression pipeline': 'RB2B 억제 파이프라인',
     'rb2b webhook ingest': 'RB2B 웹훅 수집',
     'ai revenue intelligence': '매출 인텔리전스',
+    'cold outbound optimizer': '콜드 아웃바운드 최적화',
+    'expert panel': '전문가 패널',
+    'finance ops': '재무 운영',
+    'podcast pipeline': '팟캐스트 파이프라인',
+    'ai conversion ops': '전환 최적화',
+    'ai seo ops': 'SEO 운영',
+    'ai team ops': '팀 운영',
+    'ai sales pipeline': '세일즈 파이프라인',
+    'ai sales playbook — value based pricing & deal upselling': '세일즈 플레이북 — 밸류 프라이싱',
+    'ai sales playbook': '세일즈 플레이북',
+    'growth engine': '성장 엔진',
 }
 
 def get_title_ko(title, file_name='', category='', file_type=''):
@@ -181,11 +192,39 @@ def extract_variables_from_python(content):
     return sorted(variables) if variables else ['입력 데이터']
 
 def extract_title_from_md(content, filename):
-    """마크다운에서 제목 추출"""
-    for line in content.strip().split('\n')[:10]:
-        line = line.strip()
-        if line.startswith('# '):
-            return line[2:].strip()
+    """마크다운에서 제목 추출 (frontmatter, 코드블록 무시)"""
+    lines = content.strip().split('\n')
+
+    # 1) YAML frontmatter에서 name/description 추출
+    if lines and lines[0].strip() == '---':
+        fm_name = ''
+        fm_desc = ''
+        for i, line in enumerate(lines[1:], 1):
+            if line.strip() == '---':
+                break
+            if line.startswith('name:'):
+                fm_name = line.split(':', 1)[1].strip()
+            elif line.startswith('description:'):
+                fm_desc = line.split(':', 1)[1].strip()[:80]
+        if fm_name:
+            # name을 읽기 좋게 변환: "cold-outbound-optimizer" → "Cold Outbound Optimizer"
+            return fm_name.replace('-', ' ').replace('_', ' ').title()
+
+    # 2) 코드블록 밖의 진짜 # 제목 찾기
+    in_code = False
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith('```'):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
+        if stripped.startswith('# ') and len(stripped) > 3:
+            title = stripped[2:].strip()
+            # "---" 같은 구분선 무시
+            if title and not title.startswith('-'):
+                return title
+
     return filename.replace('.md', '').replace('-', ' ').replace('_', ' ').title()
 
 def extract_title_from_py(content, filename):
@@ -198,16 +237,33 @@ def extract_title_from_py(content, filename):
     return filename.replace('.py', '').replace('-', ' ').replace('_', ' ').title()
 
 def extract_description(content, max_len=500):
-    """파일에서 설명 추출"""
+    """파일에서 설명 추출 (frontmatter description 우선)"""
     lines = content.strip().split('\n')
+
+    # 1) YAML frontmatter description
+    if lines and lines[0].strip() == '---':
+        for i, line in enumerate(lines[1:], 1):
+            if line.strip() == '---':
+                break
+            if line.startswith('description:'):
+                desc = line.split(':', 1)[1].strip()
+                if desc and len(desc) > 10:
+                    return desc[:max_len]
+
+    # 2) docstring 또는 제목 다음 문단
     desc_lines = []
     started = False
+    in_code = False
     for line in lines:
         stripped = line.strip()
+        if stripped.startswith('```'):
+            in_code = not in_code
+            continue
+        if in_code:
+            continue
         if not started:
             if stripped.startswith('# ') or stripped.startswith('"""'):
                 started = True
-                # docstring 첫줄 건너뛰기
                 if stripped.startswith('"""') and len(stripped) > 3:
                     rest = stripped[3:].strip()
                     if rest and not rest.endswith('"""'):
@@ -216,9 +272,9 @@ def extract_description(content, max_len=500):
         elif started:
             if stripped.startswith('#') or stripped == '"""' or stripped == '---':
                 break
-            if stripped:
+            if stripped and not stripped.startswith('>'):
                 desc_lines.append(stripped)
-            if len(desc_lines) >= 5:
+            if len(desc_lines) >= 3:
                 break
     return ' '.join(desc_lines)[:max_len] if desc_lines else ''
 
