@@ -28,13 +28,14 @@ MarketingFlow는 [ai-marketing-skills](https://github.com/ericosiu/ai-marketing-
   <img src="assets/screenshots/kr1.png" width="180">&nbsp;
   <img src="assets/screenshots/kr2.png" width="180">&nbsp;
   <img src="assets/screenshots/kr3.png" width="180">&nbsp;
-  <img src="assets/screenshots/kr4.png" width="180">&nbsp;
-  <img src="assets/screenshots/kr5.png" width="180">
+  <img src="assets/screenshots/kr4.png" width="180">
 </p>
-
-| 홈 화면 | SEO 필터 | 매출 인텔리전스 | 정보 및 라이선스 | 설정 |
-|---------|---------|--------------|--------------|------|
-| 114개 전략 탐색 | 카테고리별 필터링 | Revenue Intelligence | MIT 라이선스 및 저작자 고지 | 언어 및 API 설정 |
+<p align="center">
+  <img src="assets/screenshots/kr5.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr6.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr7.png" width="180">&nbsp;
+  <img src="assets/screenshots/kr8.png" width="180">
+</p>
 
 ## 주요 기능
 
